@@ -82,6 +82,16 @@ router.get('/', async(req,res) => {
             if (maxPrice) QueryObj.price.$lte = Number(maxPrice);
         }
 
+        //sort by asc and desc
+
+        let sortOption = {};
+        if (sortBy){
+            if (sortBy == 'price_asc') sortOption.price = 1;
+            if(sortBy === 'price_desc') sortOption.price = -1;
+        }else{
+            sortOption.createdAt = -1
+        }
+
     }catch{
 
     }
