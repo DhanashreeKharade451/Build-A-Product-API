@@ -23,7 +23,6 @@ const productSchema = new mongoose.Schema({
         default: true
     
     },
-
     tags:[String],
     createdAt:{
         type: Date,
