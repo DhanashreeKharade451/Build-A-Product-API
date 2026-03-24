@@ -86,20 +86,20 @@ router.get('/', async(req,res) => {
 
         let sortOption = {};
         if (sortBy){
-            if (sortBy == 'price_asc') sortOption.price = 1;
-            if(sortBy === 'price_desc') sortOption.price = -1;
+            const parts = sortBy.split('_');
+            sortOption[parts[0]] = parts[1] === 'asc' ? 1 : -1;
         }else{
             sortOption.createdAt = -1
         }
 
         //pagination logic
-        const skip = (page - 1) *limit;
+        const skip = (Number(page) - 1) * Number(limit);
 
 
         //query in database
-        const products = (await Product.find(queryObj)).sort(sortOption).skip(skip).limit(Number(limit));
+        const products = (await Product.find(QueryObj)).sort(sortOption).skip(skip).limit(Number(limit));
 
-        res.json(products);
+      res.status(200).json(products);
 
     }catch(err){
         res.status(500).json({message:err.message});
