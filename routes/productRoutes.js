@@ -46,6 +46,8 @@ router.put('/:id', async(req,res) => {
         res.status(400).json({message: err.message});
     }
 });
+
+
 //DELETE /api/products/:id
 
 router.delete('/:id',async(req,res) => {
