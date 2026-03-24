@@ -86,7 +86,7 @@ router.get('/', async(req,res) => {
 
         //sort by asc and desc
 
-        let sortOption = {};
+        let sortOption = {createdAt: -1 };
         if (sortBy){
             const parts = sortBy.split('_');
             sortOption[parts[0]] = parts[1] === 'asc' ? 1 : -1;
