@@ -76,7 +76,11 @@ router.get('/', async(req,res) => {
         }
 
         //filter according to price
-        if(minPrice || maxPRice)
+        if(minPrice || maxPrice){
+            QueryObj.price = {};
+            if(minPrice) QueryObj.price.$gte = Number(minPrice);
+            if (maxPrice) QueryObj.price.$lte = Number(maxPrice);
+        }
 
     }catch{
 
