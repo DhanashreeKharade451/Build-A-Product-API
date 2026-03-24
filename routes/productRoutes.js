@@ -33,19 +33,19 @@ router.get('/:id', async(req,res) => {
 });
 
 //PUT /api/products/:id (Update a Product)
-// router.put('/:id', async(req,res) => {
-//     try{
-//         const updateProduct = await Product.findByIdAndUpdate(
-//             req.params.id,   //find Id
-//             req.body,     //and change it with new id
-//             { new:true, runValidators:true }   //get new(updated ) data in response
-//         );
-//         if(!updateProduct) return res.status(404).json({message:"Product not found"});
-//         res.json(updateProduct);
-//     }catch(err){
-//         res.status(400).json({message: err.message});
-//     }
-// });
+router.put('/:id', async(req,res) => {
+    try{
+        const updateProduct = await Product.findByIdAndUpdate(
+            req.params.id,   //find Id
+            req.body,     //and change it with new id
+            { new:true, runValidators:true }   //get new(updated ) data in response
+        );
+        if(!updateProduct) return res.status(404).json({message:"Product not found"});
+        res.json(updateProduct);
+    }catch(err){
+        res.status(400).json({message: err.message});
+    }
+});
 //DELETE /api/products/:id
 
 router.delete('/:id',async(req,res) => {
@@ -61,5 +61,28 @@ router.delete('/:id',async(req,res) => {
     }
     
 });
+
+//GET /api/products (Read All Products with Advanced Querying)
+router.get('/', async(req,res) => {
+    try{
+
+        //creating Query Object
+        let QueryObj = {}
+        const{ category, minPrice, maxPrice,sortBy,page=1, limit =10} = req.query;
+
+        //FILTER According to category
+        if (category){
+            QueryObj.category =category;
+        }
+
+        //filter according to price
+        if(minPrice || maxPRice)
+
+    }catch{
+
+    }
+})
+
+
 
 export default router;
