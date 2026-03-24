@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
 
 router.get('/:id', async(req,res) => {
     try{
-        const product = await Product.findById(req.param.id);
+        const product = await Product.findById(req.params.id);
 
         if(!product){
             return res.status(404).json({message: "product not found"})
@@ -51,7 +51,7 @@ router.put('/:id', async(req,res) => {
 router.delete('/:id',async(req,res) => {
 
     try{
-        const product = await Product.findByIdAndDelete(req.param.id); //find product by using ID and Delete it
+        const product = await Product.findByIdAndDelete(req.params.id); //find product by using ID and Delete it
     if(!product){
         res.status(404).json({mess: "product not found"});
     }
