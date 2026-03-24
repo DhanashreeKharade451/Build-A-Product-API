@@ -92,10 +92,19 @@ router.get('/', async(req,res) => {
             sortOption.createdAt = -1
         }
 
-    }catch{
+        //pagination logic
+        const skip = (page - 1) *limit;
 
+
+        //query in database
+        const products = (await Product.find(queryObject)).sort(sortOption).skip(skip).limit(Number(limit));
+
+        res.json(products);
+
+    }catch(err){
+        res.status(500).json({message:err,message});
     }
-})
+});
 
 
 
