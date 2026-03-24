@@ -97,12 +97,12 @@ router.get('/', async(req,res) => {
 
 
         //query in database
-        const products = (await Product.find(queryObject)).sort(sortOption).skip(skip).limit(Number(limit));
+        const products = (await Product.find(queryObj)).sort(sortOption).skip(skip).limit(Number(limit));
 
         res.json(products);
 
     }catch(err){
-        res.status(500).json({message:err,message});
+        res.status(500).json({message:err.message});
     }
 });
 
