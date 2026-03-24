@@ -33,20 +33,19 @@ router.get('/:id', async(req,res) => {
 });
 
 //PUT /api/products/:id (Update a Product)
-router.put('/:id', async(req,res) => {
-    try{
-        const updateProduct = await Product.findByIdAndUpdate(
-            req.params.id,   //find Id
-            req.body,     //and change it with new id
-            { new:true, runValidators:true }   //get new(updated ) data in response
-        );
-        if(!updateProduct) return res.status(404).json({message:"Product not found"});
-        res.json(updateProduct);
-    }catch(err){
-        res.status(400).json({message: err.message});
-    }
-});
-
+// router.put('/:id', async(req,res) => {
+//     try{
+//         const updateProduct = await Product.findByIdAndUpdate(
+//             req.params.id,   //find Id
+//             req.body,     //and change it with new id
+//             { new:true, runValidators:true }   //get new(updated ) data in response
+//         );
+//         if(!updateProduct) return res.status(404).json({message:"Product not found"});
+//         res.json(updateProduct);
+//     }catch(err){
+//         res.status(400).json({message: err.message});
+//     }
+// });
 //DELETE /api/products/:id
 
 router.delete('/:id',async(req,res) => {
